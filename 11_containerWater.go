@@ -9,3 +9,28 @@
 // Note: You may not slant the container and n is at least 2.
 
 package main
+
+func maxArea(height []int) int {
+	x := 0
+	y := len(height) - 1
+	maxArea := 0
+	if y > 0 {
+		for {
+			area := 0
+			if height[x] < height[y] {
+				area = height[x] * (y - x)
+				x++
+			} else {
+				area = height[y] * (y - x)
+				y--
+			}
+			if maxArea < area {
+				maxArea = area
+			}
+			if x >= y {
+				break
+			}
+		}
+	}
+	return maxArea
+}
