@@ -6,6 +6,11 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestThreeSum(t *testing.T) {
+	assert.Equal(t, [][]int{}, threeSum([]int{}))
+	assert.Equal(t, [][]int{{-1, -1, 2}, {-1, 0, 1}}, threeSum([]int{-1, 0, 1, 2, -1, -4}))
+	assert.Equal(t, [][]int{{0, 0, 0}}, threeSum([]int{0, 0, 0, 0, 0}))
+}
 func TestContainerWater(t *testing.T) {
 	assert.Equal(t, 0, maxArea([]int{}))
 	assert.Equal(t, 49, maxArea([]int{1, 8, 6, 2, 5, 4, 8, 3, 7}))
