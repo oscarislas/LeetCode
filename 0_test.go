@@ -6,6 +6,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestValidParentheses(t *testing.T) {
+	assert.Equal(t, true, isValid(""))
+	assert.Equal(t, false, isValid("((("))
+	assert.Equal(t, false, isValid("(("))
+	assert.Equal(t, true, isValid("(){}[]"))
+	assert.Equal(t, false, isValid("([)]"))
+	assert.Equal(t, true, isValid("([{}])"))
+}
+
 func TestThreeSum(t *testing.T) {
 	assert.Equal(t, [][]int{}, threeSum([]int{}))
 	assert.Equal(t, [][]int{{-1, -1, 2}, {-1, 0, 1}}, threeSum([]int{-1, 0, 1, 2, -1, -4}))

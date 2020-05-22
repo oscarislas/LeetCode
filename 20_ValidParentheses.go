@@ -12,6 +12,50 @@
 
 package main
 
+import "errors"
+
 func isValid(s string) bool {
-	return false
+	if len(s) <= 0 {
+		return true
+	}
+	if len(s)%2 != 0 {
+		return false
+	}
+	stack := &[]rune{}
+	for _, r := range s {
+		if isOpening(r) {
+			pushRune(stack, r)
+			continue
+		}
+		open, err := popRune(stack)
+		if err != nil || !matches(open, r) {
+			return false
+		}
+	}
+	if len(*stack) > 0 {
+		return false
+	}
+	return true
+}
+
+func isOpening(r rune) bool {
+	return r == '(' || r == '[' || r == '{'
+}
+
+func matches(open rune, close rune) bool {
+	return (open == '(' && close == ')') || (open == '{' && close == '}') || (open == '[' && close == ']')
+}
+
+func pushRune(stack *[]rune, r rune) {
+	*stack = append(*stack, r)
+}
+
+func popRune(stack *[]rune) (rune, error) {
+	l := len(*stack) - 1
+	if l < 0 {
+		return rune(0), errors.New("empty!")
+	}
+	r := (*stack)[l]
+	*stack = (*stack)[:l]
+	return r, nil
 }
