@@ -6,6 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestMergeTwoList(t *testing.T) {
+	assert.Equal(t, []int{}, mergeTwoListsHelper(nil, nil))
+	assert.Equal(t, []int{1, 2, 4}, mergeTwoListsHelper([]int{1, 2, 4}, nil))
+	assert.Equal(t, []int{1, 3, 4}, mergeTwoListsHelper(nil, []int{1, 3, 4}))
+	assert.Equal(t, []int{1, 2}, mergeTwoListsHelper([]int{2}, []int{1}))
+	assert.Equal(t, []int{1, 1, 2, 3, 4, 4}, mergeTwoListsHelper([]int{1, 2, 4}, []int{1, 3, 4}))
+}
+
 func TestValidParentheses(t *testing.T) {
 	assert.Equal(t, true, isValid(""))
 	assert.Equal(t, false, isValid("((("))
