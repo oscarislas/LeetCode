@@ -12,7 +12,24 @@
 // Output: 1->1->2->3->4->4->5->6
 package main
 
+//O(N log k)
 func mergeKLists(lists []*ListNode) *ListNode {
+	if len(lists) <= 0 {
+		return nil
+	}
+	max := len(lists)
+	interval := 1
+	for interval < max {
+		for i := 0; i < max-interval; i = i + (interval * 2) {
+			lists[i] = mergeTwoLists(lists[i], lists[i+interval])
+		}
+		interval *= 2
+	}
+	return lists[0]
+}
+
+//Recursive O(k*N)
+func mergeKListsR(lists []*ListNode) *ListNode {
 	if len(lists) <= 0 {
 		return nil
 	}
