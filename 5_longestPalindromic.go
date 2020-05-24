@@ -14,7 +14,7 @@ func longestPalindrome(s string) string {
 		return ""
 	}
 	longestP := string(s[0])
-	for index, _ := range s {
+	for index := range s {
 		currentP := expand(s, index, index)
 		if len(currentP) > len(longestP) {
 			longestP = currentP
