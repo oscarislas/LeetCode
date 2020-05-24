@@ -6,6 +6,23 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestSearchRotatedSortedArray(t *testing.T) {
+	assert.Equal(t, -1, search(nil, 0))
+	assert.Equal(t, -1, search([]int{}, 0))
+	assert.Equal(t, -1, search([]int{1}, 0))
+	assert.Equal(t, 0, search([]int{1}, 1))
+	assert.Equal(t, -1, search([]int{1}, 2))
+	assert.Equal(t, 1, search([]int{3, 1}, 1))
+	assert.Equal(t, 0, search([]int{3, 1}, 3))
+	assert.Equal(t, 1, search([]int{1, 3}, 3))
+	assert.Equal(t, 2, search([]int{5, 1, 3}, 3))
+	assert.Equal(t, 0, search([]int{1, 3}, 1))
+	assert.Equal(t, -1, search([]int{1, 3}, 4))
+	assert.Equal(t, 4, search([]int{4, 5, 6, 7, 0, 1, 2}, 0))
+	assert.Equal(t, -1, search([]int{4, 5, 6, 7, 0, 1, 2}, 3))
+	assert.Equal(t, 4, search([]int{4, 5, 6, 7, 8, 1, 2, 3}, 8))
+}
+
 func TestMergeTwoList(t *testing.T) {
 	assert.Equal(t, []int{}, mergeTwoListsHelper(nil, nil))
 	assert.Equal(t, []int{1, 2, 4}, mergeTwoListsHelper([]int{1, 2, 4}, nil))
