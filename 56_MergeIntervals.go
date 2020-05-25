@@ -9,6 +9,20 @@
 
 package main
 
+import "sort"
+
 func merge(intervals [][]int) [][]int {
-	return nil
+	merged := make([][]int, 0)
+	sort.Slice(intervals, func(i, j int) bool { return intervals[i][0] < intervals[j][0] })
+	for _, interval := range intervals {
+		if len(merged) == 0 || interval[0] > merged[len(merged)-1][1] {
+			merged = append(merged, interval)
+			continue
+		}
+		lastMerged := merged[len(merged)-1]
+		if lastMerged[1] < interval[1] {
+			lastMerged[1] = interval[1]
+		}
+	}
+	return merged
 }
