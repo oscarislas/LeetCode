@@ -12,35 +12,23 @@
 
 package main
 
-import "fmt"
-
 func firstMissingPositive(nums []int) int {
 	max := len(nums)
-	if max <= 0 || (max == 1 && nums[0] != 1) {
+	if max <= 0 {
 		return 1
 	}
-	if max == 1 && nums[0] == 1 {
-		return 2
-	}
-
-	for i, val := range nums {
-		if val > max || val <= 0 {
-			nums[i] = 1
+	for i := 0; i < max; {
+		j := nums[i] - 1
+		if j >= 0 && j < max && j != nums[j]-1 {
+			nums[i], nums[j] = nums[j], nums[i]
 			continue
 		}
-		if nums[val-1] > max || nums[val-1] <= 0 {
-			nums[0] = nums[val-1]
-		}
-		nums[val-1] = -1
+		i++
 	}
-	fmt.Println(nums)
 	for i, val := range nums {
-		if val > 0 {
+		if val != i+1 {
 			return i + 1
 		}
 	}
-	if nums[0] > 0 {
-		return nums[0]
-	}
-	return max
+	return max + 1
 }
