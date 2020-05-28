@@ -53,7 +53,7 @@ func pushRune(stack *[]rune, r rune) {
 func popRune(stack *[]rune) (rune, error) {
 	l := len(*stack) - 1
 	if l < 0 {
-		return rune(0), errors.New("empty!")
+		return rune(0), errors.New("empty")
 	}
 	r := (*stack)[l]
 	*stack = (*stack)[:l]

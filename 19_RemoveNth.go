@@ -12,7 +12,7 @@
 
 package main
 
-//Definition for singly-linked list.
+//ListNode ...
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -38,7 +38,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 }
 
 //O(n) with O(n) space
-func removeNthFromEnd_slice(head *ListNode, n int) *ListNode {
+func removeNthFromEndSlice(head *ListNode, n int) *ListNode {
 	if head == nil || head.Next == nil {
 		return nil
 	}
